@@ -1,4 +1,48 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, RESET } from "./types";
+import {ADD_LOCATION,HANDLE_NUMBER, ADD_FAV, REMOVE_FAV,PREV_PAGE, FILTER, ORDER, RESET, ADD_CHARACTER, REMOVE_CHARACTER, NEXT_PAGE } from "./types";
+
+export function addLocation(path) {
+  return {
+    type: ADD_LOCATION,
+    payload:path
+  };
+}
+
+
+
+export function prevPage() {
+  return {
+    type: PREV_PAGE,
+  };
+}
+
+
+
+export function nextPage() {
+  return {
+    type: NEXT_PAGE,
+  };
+}
+export function handleNumber(num) {
+  return {
+    type: HANDLE_NUMBER,
+    payload: num
+  };
+}
+
+export function addCharacter(character) {
+  return {
+    type: ADD_CHARACTER,
+    payload: character,
+  };
+}
+
+export function removeCharacter(id) {
+  return {
+    type: REMOVE_CHARACTER,
+    payload: id,
+  };
+}
+
 
 export function addFav(character) {
   return {

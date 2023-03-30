@@ -12,6 +12,8 @@ import Login from "./components/Login";
 import About from "./components/About";
 import Detail from "./components/Detail";
 import Favorites from "./components/Favorites";
+import { useDispatch } from "react-redux";
+import { addCharacter, addLocation } from "./redux/actions/actions";
 
 function App() {
   const navigate = useNavigate();
@@ -22,6 +24,12 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const location = useLocation();
   //console.log("location", location);
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(addLocation(location.pathname))
+  }, [location]);
 
   function login(inputs) {
     if (inputs.password === PASSWORD && inputs.email === EMAIL) {
@@ -42,7 +50,7 @@ function App() {
   useEffect(() => {
     const requests = [];
 
-    for (let num = 32; num < 42; num++) {
+    for (let num = 22; num < 24; num++) {
       requests.push(
         axios.get(`https://rickandmortyapi.com/api/character?page=${num}`)
       );
@@ -57,6 +65,8 @@ function App() {
         );
         console.log(":::", newCharacters);
         setCharacters([...newCharacters]);
+        dispatch(addCharacter(newCharacters))
+
       })
       .catch((error) => {});
   }, []);
@@ -72,6 +82,7 @@ function App() {
             alert("ya existe");
           } else {
             setCharacters((oldChars) => [data, ...oldChars]);
+            dispatch(addCharacter(data))
           }
         } else {
           window.alert("¡No hay personajes con este ID!");
@@ -94,7 +105,7 @@ function App() {
         <Route path="/" element={<Login login={login} />}></Route>
         <Route
           path="/home"
-          element={<Cards onClose={onClose} characters={characters} />}
+          element={<Cards onClose={onClose} />}
         ></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
@@ -114,4 +125,41 @@ Nav debe que aparecer en todas las rutas.
 Cards debe aparecer solo en la ruta /home.
 About debe aparecer solo en la ruta /about.
 Detail debe aparecer solo en la ruta /detail/:id.
+*/
+
+
+/*
+en el class component, como hago para dispachear al redux un state local
+
+
+import React, { Component } from 'react'
+import {connect}
+import {addForm}
+
+class App extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      form:{}
+    }
+  }
+  add = ()=>{
+    this.props.addForm(this.state.form)
+  }
+  componentDidMount
+  render() {
+    return (
+      <div>
+        <button onClick={this.add}> 
+      </div>
+    )
+  }
+}
+function mapDispatch(dis){
+  return {
+    addForm: (form)=> dis(addForm(form))
+  }
+}
+
+export default connect(mapState, mapDispatch)(App)
 */

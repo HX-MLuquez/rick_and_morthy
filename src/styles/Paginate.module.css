@@ -1,0 +1,10 @@
+.page{
+    display: flex;
+    justify-content: center
+}
+.page p, h3 {
+    background-color: rgb(132, 197, 152);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 4px;
+}
