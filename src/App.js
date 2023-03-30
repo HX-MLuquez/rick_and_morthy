@@ -27,6 +27,7 @@ function App() {
     if (inputs.password === PASSWORD && inputs.email === EMAIL) {
       setAccess(true);
       navigate("/home");
+      return alert("OK");
     }
   }
   function logout() {

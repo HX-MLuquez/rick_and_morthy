@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import style from '../styles/Login.module.css'
+import style from "../styles/Login.module.css";
 
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const regexPassword =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,10}/;
 
-export default function Login({login}) {
+export default function Login({ login }) {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
@@ -42,23 +42,23 @@ export default function Login({login}) {
       })
     );
   }
-  function handleSubmit(e){
-    e.prevent.default()
-    const aux = Object.keys(errors)
-    if(aux.length===0){
+  function handleSubmit(e) {
+    e.preventDefault();
+    const aux = Object.keys(errors);
+    // console.log("submit");
+    if (aux.length === 0) {
       // enviamos fafafafaf
       setInputs({
         email: "",
         password: "",
-      })
+      });
       setErrors({
         email: "",
         password: "",
-      })
-      login(inputs)
-      return alert("OKKKKKKK")
+      });
+      return login(inputs);
     }
-    return alert("Error")
+    return alert("Error");
   }
   return (
     <div className={style.container}>
@@ -80,9 +80,7 @@ export default function Login({login}) {
         ></input>
         <p className={style.danger}>{errors.password}</p>
         {Object.keys(errors).length === 0 ? (
-          <Link to="/home">
-            <button type="submit">Ingresar</button>
-          </Link>
+          <button type="submit">Ingresar</button>
         ) : null}
       </form>
     </div>

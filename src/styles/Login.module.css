@@ -1,9 +1,48 @@
-
-.form{
-    width: 30%;
+.form {
+  width: 30%;
   height: 40vh;
   background-color: #1c3c4d69;
   padding: 20px;
   border-radius: 4px;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+label{
+  color:rgb(220, 230, 245)
+}
+input{
+  padding: 8px;
+  margin: 4px;
+  font-size: 16px;
+  width: 90%;
+
+}
+
+button{
+  background-color: rgb(113, 197, 113);
+  color: rgb(20, 82, 20);
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.4s ease;
+  box-shadow: 0px 1px 1px black;
+}
+
+button:hover{
+  background-color: rgb(11, 55, 11);
+  color: rgb(137, 196, 137);
+}
+
+.danger{
+  color: rgb(244, 47, 47)
+}

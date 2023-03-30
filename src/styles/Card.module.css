@@ -16,3 +16,9 @@ img{
     color: black;
 }
 
+.head_card{
+    display: flex;
+    justify-content: space-between;
+    
+}
+

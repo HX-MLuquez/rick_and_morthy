@@ -1,0 +1,23 @@
+.nav_favorites {
+    display: flex;
+    align-items: center;
+    color:rgb(220, 230, 245);
+    background-color: #264658;
+    border-radius: 4px;
+
+}
+.nav_favorites select {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 2px;
+    margin-right: 8px;
+    cursor: pointer;
+    color: rgb(20, 82, 20);
+}
+
+.cards_container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 24px;
+  justify-content: space-around;
+}

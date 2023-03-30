@@ -1,0 +1,13 @@
+.detail {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.detail img{
+    width: 40%;
+    height: 60vh;
+    max-width: 400px;
+}
+.text_contain {
+}
