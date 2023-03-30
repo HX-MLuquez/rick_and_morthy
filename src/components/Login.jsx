@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import style from '../styles/Login.module.css'
 
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const regexPassword =
@@ -60,8 +61,8 @@ export default function Login({login}) {
     return alert("Error")
   }
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className={style.container}>
+      <form className={style.form} onSubmit={handleSubmit}>
         <label>Email: </label>
         <input
           name="email"
@@ -69,7 +70,7 @@ export default function Login({login}) {
           onChange={handleChange}
           placeholder=""
         ></input>
-        <p className="danger">{errors.email}</p>
+        <p className={style.danger}>{errors.email}</p>
         <label>Password: </label>
         <input
           name="password"
@@ -77,7 +78,7 @@ export default function Login({login}) {
           onChange={handleChange}
           placeholder=""
         ></input>
-        <p className="danger">{errors.password}</p>
+        <p className={style.danger}>{errors.password}</p>
         {Object.keys(errors).length === 0 ? (
           <Link to="/home">
             <button type="submit">Ingresar</button>

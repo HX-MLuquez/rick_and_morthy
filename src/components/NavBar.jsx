@@ -1,12 +1,12 @@
 import React from "react";
 import SearchBar from "./SearchBar";
-import "./NavBar.css";
+import style from '../styles/NavBar.module.css'
 
 import { Link } from "react-router-dom";
 
 export default function NavBar({ onSearch, logout }) {
   return (
-    <div className="nav">
+    <div className={style.nav}>
       <Link to="/home">
         <button>Home</button>
       </Link>

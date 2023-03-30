@@ -1,0 +1,11 @@
+.nav {
+  border: 2px solid #354e5c;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 2px;
+  padding: 18px;
+  background-color: #1c3c4d;
+  height: 10vh;
+}
