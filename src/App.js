@@ -13,7 +13,11 @@ import About from "./components/About";
 import Detail from "./components/Detail";
 import Favorites from "./components/Favorites";
 import { useDispatch } from "react-redux";
-import { addCharacter, addLocation } from "./redux/actions/actions";
+import {
+  addCharacter,
+  addLocation,
+  searchCharacter,
+} from "./redux/actions/actions";
 
 function App() {
   const navigate = useNavigate();
@@ -25,10 +29,10 @@ function App() {
   const location = useLocation();
   //console.log("location", location);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(addLocation(location.pathname))
+    dispatch(addLocation(location.pathname));
   }, [location]);
 
   function login(inputs) {
@@ -48,45 +52,24 @@ function App() {
   }, [access]);
 
   useEffect(() => {
-    const requests = [];
-
-    for (let num = 22; num < 24; num++) {
-      requests.push(
-        axios.get(`https://rickandmortyapi.com/api/character?page=${num}`)
-      );
-    }
-
-    Promise.all(requests)
+    console.log("wwwwwwwwwwwwww")
+    axios
+      .get(`http://localhost:3001/rickandmorty/characters`)
       .then((results) => {
-        // console.log(":::", results);
-        let newCharacters = [];
-        results.map(
-          (chars) => (newCharacters = [...newCharacters, ...chars.data.results])
-        );
-        console.log(":::", newCharacters);
-        setCharacters([...newCharacters]);
-        dispatch(addCharacter(newCharacters))
+        console.log(":::", results.data);
 
-      })
-      .catch((error) => {});
+        setCharacters([...results.data]);
+        dispatch(addCharacter(results.data));
+      });
   }, []);
 
   function onSearch(id) {
     axios
-      .get(`https://rickandmortyapi.com/api/character/${id}`)
+      .get(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
         console.log(":::::", data);
-        if (data.name) {
-          let exist = characters.find((ch) => ch.id === data.id);
-          if (exist) {
-            alert("ya existe");
-          } else {
-            setCharacters((oldChars) => [data, ...oldChars]);
-            dispatch(addCharacter(data))
-          }
-        } else {
-          window.alert("¡No hay personajes con este ID!");
-        } // .then(()=>{})
+
+        dispatch(searchCharacter(data));
       });
   }
 
@@ -103,10 +86,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login login={login} />}></Route>
-        <Route
-          path="/home"
-          element={<Cards onClose={onClose} />}
-        ></Route>
+        <Route path="/home" element={<Cards onClose={onClose} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
           path="/favorites"
@@ -126,7 +106,6 @@ Cards debe aparecer solo en la ruta /home.
 About debe aparecer solo en la ruta /about.
 Detail debe aparecer solo en la ruta /detail/:id.
 */
-
 
 /*
 en el class component, como hago para dispachear al redux un state local

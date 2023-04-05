@@ -47,7 +47,20 @@ export default function Login({ login }) {
     const aux = Object.keys(errors);
     // console.log("submit");
     if (aux.length === 0) {
+      //   // enviamos fafafafaf
+      //   setInputs({
+      //     email: "",
+      //     password: "",
+      //   });
+      //   setErrors({
+      //     email: "",
+      //     password: "",
+      //   });
+      //   return login(inputs);
+      // }
+      // return alert("Error");
       // enviamos fafafafaf
+      login(inputs);
       setInputs({
         email: "",
         password: "",
@@ -56,9 +69,9 @@ export default function Login({ login }) {
         email: "",
         password: "",
       });
-      return login(inputs);
+    } else {
+      return alert("Error");
     }
-    return alert("Error");
   }
   return (
     <div className={style.container}>

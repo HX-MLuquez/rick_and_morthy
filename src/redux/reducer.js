@@ -9,11 +9,14 @@ import {
   NEXT_PAGE,
   PREV_PAGE,
   HANDLE_NUMBER,
-  ADD_LOCATION
+  ADD_LOCATION,
+  SEARCH_CHARACTER,
+  RESET_CHARACTER
 } from "./actions/types";
 const initialState = {
-  location:[],
+  location: [],
   numPage: 1,
+  charactersOrigin: [],
   characters: [],
   data: [],
   myFavorites: [],
@@ -26,6 +29,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
       return {
         ...state,
         location: [...state.location, payload],
+      };
+    case SEARCH_CHARACTER:
+      return {
+        ...state,
+        characters: [payload],
       };
     case HANDLE_NUMBER:
       return {
@@ -47,6 +55,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
       if (Array.isArray(payload)) {
         return {
           ...state,
+          charactersOrigin: [...state.characters, ...payload],
           characters: [...state.characters, ...payload],
         };
       }
@@ -54,6 +63,13 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         characters: [payload, ...state.characters],
       };
+
+    case RESET_CHARACTER:
+      return {
+        ...state,
+        characters: [...state.charactersOrigin],
+      };
+
     case REMOVE_CHARACTER:
       const newCharacter = state.myFavoritesOrigin.filter(
         (ch) => ch.id !== payload

@@ -1,9 +1,17 @@
 import Card from "./Card";
 import style from "../styles/Cards.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Paginate from "./Paginate";
+import { useEffect } from "react";
+import { resetCharacters } from "../redux/actions/actions";
 
 export default function Cards({ onClose }) {
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   console.log("in dispatch Cards Home")
+  //   dispatch(resetCharacters());
+  // }, []);
+
   const { characters } = useSelector((state) => state);
   const { numPage } = useSelector((state) => state);
 
