@@ -9,7 +9,7 @@ export default function SearchBar({ onSearch }) {
   const dispatch = useDispatch()
 
   function handleChange(event) {
-   console.log("input value ", event.target.value);
+   // console.log("input value ", event.target.value);
     setId(event.target.value);
   }
   function submit(){

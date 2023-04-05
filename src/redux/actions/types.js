@@ -4,7 +4,7 @@ export const FILTER = "FILTER"
 export const ORDER = "ORDER"
 export const RESET = "RESET"
 
-export const ADD_CHARACTER = "ADD_CHARACTER"
+export const ADD_CHARACTERS = "ADD_CHARACTERS"
 export const REMOVE_CHARACTER = "REMOVE_CHARACTER"
 export const NEXT_PAGE = "NEXT_PAGE"
 export const PREV_PAGE = "PREV_PAGE"

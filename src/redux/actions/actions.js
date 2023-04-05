@@ -1,4 +1,4 @@
-import {RESET_CHARACTER, SEARCH_CHARACTER,ADD_LOCATION,HANDLE_NUMBER, ADD_FAV, REMOVE_FAV,PREV_PAGE, FILTER, ORDER, RESET, ADD_CHARACTER, REMOVE_CHARACTER, NEXT_PAGE } from "./types";
+import {RESET_CHARACTER, SEARCH_CHARACTER,ADD_LOCATION,HANDLE_NUMBER, ADD_FAV, REMOVE_FAV,PREV_PAGE, FILTER, ORDER, RESET, ADD_CHARACTERS, REMOVE_CHARACTER, NEXT_PAGE } from "./types";
 
 export function addLocation(path) {
   return {
@@ -29,10 +29,10 @@ export function handleNumber(num) {
   };
 }
 
-export function addCharacter(character) {
+export function addCharacters(characters) {
   return {
-    type: ADD_CHARACTER,
-    payload: character,
+    type: ADD_CHARACTERS,
+    payload: characters,
   };
 }
 export function searchCharacter(character) {

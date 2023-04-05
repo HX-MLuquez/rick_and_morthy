@@ -4,14 +4,14 @@ import {
   FILTER,
   ORDER,
   RESET,
-  ADD_CHARACTER,
+  ADD_CHARACTERS,
   REMOVE_CHARACTER,
   NEXT_PAGE,
   PREV_PAGE,
   HANDLE_NUMBER,
   ADD_LOCATION,
   SEARCH_CHARACTER,
-  RESET_CHARACTER
+  RESET_CHARACTER,
 } from "./actions/types";
 const initialState = {
   location: [],
@@ -51,19 +51,19 @@ export default function rootReducer(state = initialState, { type, payload }) {
         numPage: state.numPage - 1,
       };
 
-    case ADD_CHARACTER:
+    case ADD_CHARACTERS:
       if (Array.isArray(payload)) {
         return {
           ...state,
-          charactersOrigin: [...state.characters, ...payload],
-          characters: [...state.characters, ...payload],
+          charactersOrigin: [...payload],
+          characters: [...payload],
         };
-      }
-      return {
-        ...state,
-        characters: [payload, ...state.characters],
-      };
-
+      } // |*|*|*| CCC |*|*|*|
+      // return {
+      //   ...state,
+      //   characters: [payload, ...state.characters],
+      // };
+      break;
     case RESET_CHARACTER:
       return {
         ...state,
@@ -76,8 +76,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
       );
       return {
         ...state,
-        myFavorites: newFavorites,
-        myFavoritesOrigin: newFavorites,
+        myFavorites: newCharacter,
+        myFavoritesOrigin: newCharacter,
       };
 
     case ADD_FAV:

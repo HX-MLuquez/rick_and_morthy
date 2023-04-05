@@ -12,9 +12,9 @@ import Login from "./components/Login";
 import About from "./components/About";
 import Detail from "./components/Detail";
 import Favorites from "./components/Favorites";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
-  addCharacter,
+  addCharacters,
   addLocation,
   searchCharacter,
 } from "./redux/actions/actions";
@@ -25,7 +25,8 @@ function App() {
   const EMAIL = "eje@gmail.com";
   const PASSWORD = "@Model101";
 
-  const [characters, setCharacters] = useState([]);
+  // const [characters, setCharacters] = useState([]); 
+  const { characters } = useSelector((state) => state); // |*|*|*| AAA |*|*|*|
   const location = useLocation();
   //console.log("location", location);
 
@@ -33,7 +34,7 @@ function App() {
 
   useEffect(() => {
     dispatch(addLocation(location.pathname));
-  }, [location]);
+  }, [dispatch,location]);
 
   function login(inputs) {
     if (inputs.password === PASSWORD && inputs.email === EMAIL) {
@@ -49,34 +50,37 @@ function App() {
 
   useEffect(() => {
     !access && navigate("/");
-  }, [access]);
+  }, [navigate, access]);
 
   useEffect(() => {
-    console.log("wwwwwwwwwwwwww")
     axios
       .get(`http://localhost:3001/rickandmorty/characters`)
       .then((results) => {
-        console.log(":::", results.data);
+        // console.log(":::", results.data);
 
-        setCharacters([...results.data]);
-        dispatch(addCharacter(results.data));
+        // setCharacters([...results.data]);
+        dispatch(addCharacters(results.data));
       });
+      /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
 
   function onSearch(id) {
     axios
       .get(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
-        console.log(":::::", data);
+        // console.log(":::::", data);
 
         dispatch(searchCharacter(data));
       });
   }
 
   function onClose(id) {
-    setCharacters((oldChars) => {
-      return oldChars.filter((ch) => ch.id !== id);
-    });
+    // setCharacters((oldChars) => {
+    //   return oldChars.filter((ch) => ch.id !== id); 
+    // }); 
+    // |*|*|*| BBB |*|*|*|
+    const filterCharacters = characters.filter((ch) => ch.id !== id);
+    dispatch(addCharacters(filterCharacters));
   }
   return (
     <div className={style.app}>

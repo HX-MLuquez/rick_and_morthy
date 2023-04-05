@@ -1,6 +1,6 @@
 import style from "../styles/Card.module.css";
 import { Link } from "react-router-dom";
-import { connect, useDispatch, useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { addFav, removeFav } from "../redux/actions/actions";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -45,11 +45,11 @@ export default function Card(props) {
         <button onClick={superClouse}>X</button>
       </div>
       <Link className={style.link} to={`/detail/${id}`}>
-        <h1>{name}</h1>
+        <h1>{name.slice(0,16)}</h1>
         {/* <h2>{status}</h2>
         <h2>{species}</h2>
         <h2>{gender}</h2> */}
-        <h2>{origin}</h2>
+        <h2>{origin.slice(0,26)}</h2>
         <img src={image} alt={name} />
       </Link>
     </div>

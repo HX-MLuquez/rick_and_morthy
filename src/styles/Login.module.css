@@ -35,7 +35,7 @@ button{
   border-radius: 5px;
   font-size: 16px;
   transition: background-color 0.4s ease;
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 1px 1px 1px rgb(239, 228, 228);
 }
 
 button:hover{

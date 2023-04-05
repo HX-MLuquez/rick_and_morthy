@@ -1,9 +1,8 @@
 import Card from "./Card";
 import style from "../styles/Cards.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Paginate from "./Paginate";
-import { useEffect } from "react";
-import { resetCharacters } from "../redux/actions/actions";
+
 
 export default function Cards({ onClose }) {
   // const dispatch = useDispatch();
@@ -18,17 +17,17 @@ export default function Cards({ onClose }) {
   // 20
   //  2    3
   // 0 5  5 10
-  let desde = (numPage - 1) * 8; // 5
-  let hasta = numPage * 8; // 10
+  let desde = (numPage - 1) * 4; // 5
+  let hasta = numPage * 4; // 10
 
   // cant de numb de page si quiero 5 por page y tengo 20
   // 1   2   3   4
-  let cantPages = Math.floor(characters.length / 8);
+  let cantPages = Math.floor(characters.length / 4);
 
   let viewCharacters = characters?.slice(desde, hasta);
 
   return (
-    console.log("--->", characters),
+    // console.log("--->", characters),
     (
       <div>
         <div className={style.cards_container}>
