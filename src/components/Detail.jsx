@@ -23,12 +23,16 @@ export default function Detail() {
   return (
     <div className={style.detail}>
       <img src={character.image} alt={character.name} />
-      <h1>{character.name}</h1>
-      <div className={style.text_contain}>
-        <h2>{character.status}</h2>
+      <div>
+        <h1>{character.name}</h1>
         <h2>{character.species}</h2>
-        <h2>{character.gender}</h2>
-        <h2>{character.origin?.name}</h2>
+      </div>
+
+      <div className={style.text_contain}>
+        <h3>{character.status}</h3>
+        <h3>{character.gender}</h3>
+        <h3>{character.origin?.name}</h3>
+        <h3>{character.location?.name}</h3>
       </div>
     </div>
   );

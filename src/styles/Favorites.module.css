@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     color:rgb(220, 230, 245);
-    background-color: #264658;
+    background-color: #d9e4ea;
     border-radius: 4px;
 
 }
@@ -20,4 +20,5 @@
   flex-wrap: wrap;
   padding: 24px;
   justify-content: space-around;
+  height: 68vh;
 }

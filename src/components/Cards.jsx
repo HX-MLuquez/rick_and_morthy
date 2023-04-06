@@ -32,10 +32,10 @@ export default function Cards({ onClose }) {
       <div>
         <div className={style.cards_container}>
           {viewCharacters &&
-            viewCharacters.map((element, index) => {
+            viewCharacters.map((element) => {
               return (
                 <Card
-                  key={index}
+                  key={element.id}
                   id={element.id}
                   name={element.name}
                   status={element.status}

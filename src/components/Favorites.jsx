@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "./Card";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   removeFav,
   orderCards,
@@ -55,10 +55,10 @@ export default function Favorites({ onClose }) {
       </div>
       <div className={style.cards_container}>
         {myFavorites &&
-          myFavorites.map((element, index) => {
+          myFavorites.map((element) => {
             return (
               <Card
-                key={index}
+                key={element.id}
                 id={element.id}
                 name={element.name}
                 status={element.status}
