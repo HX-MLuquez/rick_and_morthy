@@ -24,7 +24,7 @@ export default function Cards({ onClose }) {
   // 1   2   3   4
   let cantPages = Math.floor(characters.length / 4);
 
-  let viewCharacters = characters?.slice(desde, hasta);
+  let viewCharacters = characters?.slice(desde, hasta); // [{1}{2}{3}{4}][{5}{6}{7}{}]
 
   return (
     // console.log("--->", characters),

@@ -68,7 +68,7 @@ function App() {
     axios
       .get(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
-        // console.log(":::::", data);
+        // console.log("01:::::", data);
 
         dispatch(searchCharacter(data));
       });
