@@ -41,7 +41,7 @@ export default function Cards({ onClose }) {
                   status={element.status}
                   species={element.species}
                   gender={element.gender}
-                  origin={element.origin.name}
+                  origin={element.origin}
                   image={element.image}
                   onClose={onClose}
                 ></Card>

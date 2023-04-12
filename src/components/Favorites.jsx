@@ -36,14 +36,14 @@ export default function Favorites({ onClose }) {
     <div>
       <div className={style.nav_favorites}>
         <select onChange={handleOrder} name="order" defaultValue={"DEFAULT"}>
-          <option value="DEFAULT" disable>
+          <option value="DEFAULT" disable="true">
             Select Order
           </option>
           <option value="Ascendente">Ascendente</option>
           <option value="Descendente">Descendente</option>
         </select>
         <select onChange={handleFilter} name="filter" defaultValue={"DEFAULT"}>
-          <option value="DEFAULT" disable>
+          <option value="DEFAULT" disable="true">
             Select Filter
           </option>
           <option value="Male">Male</option>

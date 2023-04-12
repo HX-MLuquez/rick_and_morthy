@@ -75,6 +75,8 @@ export default function Login({ login }) {
   }
   return (
     <div className={style.container}>
+      <h4>BIENVENIDOS A:</h4>
+      <h3>BUCARAMANGA</h3>
       <form className={style.form} onSubmit={handleSubmit}>
         <label>Email: </label>
         <input

@@ -1,21 +1,33 @@
-import {RESET_CHARACTER, SEARCH_CHARACTER,ADD_LOCATION,HANDLE_NUMBER, ADD_FAV, REMOVE_FAV,PREV_PAGE, FILTER, ORDER, RESET, ADD_CHARACTERS, REMOVE_CHARACTER, NEXT_PAGE } from "./types";
+import {
+  RESET_CHARACTER,
+  SEARCH_CHARACTER,
+  ADD_LOCATION,
+  HANDLE_NUMBER,
+  ADD_FAV,
+  REMOVE_FAV,
+  PREV_PAGE,
+  FILTER,
+  ORDER,
+  RESET,
+  ADD_CHARACTERS,
+  REMOVE_CHARACTER,
+  NEXT_PAGE,
+} from "./types";
+
+import axios from 'axios'
 
 export function addLocation(path) {
   return {
     type: ADD_LOCATION,
-    payload:path
+    payload: path,
   };
 }
-
-
 
 export function prevPage() {
   return {
     type: PREV_PAGE,
   };
 }
-
-
 
 export function nextPage() {
   return {
@@ -25,7 +37,7 @@ export function nextPage() {
 export function handleNumber(num) {
   return {
     type: HANDLE_NUMBER,
-    payload: num
+    payload: num,
   };
 }
 
@@ -49,18 +61,31 @@ export function removeCharacter(id) {
   };
 }
 
-
-export function addFav(character) {
-  return {
-    type: ADD_FAV,
-    payload: character,
+export function addFav(character) { // *** to route addFav
+  return function (dispatch) {
+    axios
+      .post(`http://localhost:3001/rickandmorty/favorite`, character)
+      .then(({ data }) => {
+        return dispatch({
+          type: ADD_FAV,
+          payload: data, // data is array myFavorites
+        });
+      })
+      .catch((error) => error);
   };
 }
 
-export function removeFav(id) {
-  return {
-    type: REMOVE_FAV,
-    payload: id,
+export function removeFav(id) { // *** to route deleteFav
+  return function (dispatch) {
+    axios
+      .delete(`http://localhost:3001/rickandmorty/favorite/${id}`)
+      .then(({ data }) => {
+        return dispatch({
+          type: REMOVE_FAV,
+          payload: data, // data is array myFavorites
+        });
+      })
+      .catch((error) => error);
   };
 }
 
@@ -70,18 +95,19 @@ export function filterCards(gender) {
     payload: gender,
   };
 }
-export function orderCards(order) { // A: ascendente o D: descendente
+export function orderCards(order) {
+  // A: ascendente o D: descendente
   return {
     type: ORDER,
     payload: order,
   };
 }
-export function reset() { 
+export function reset() {
   return {
     type: RESET,
   };
 }
-export function resetCharacters() { 
+export function resetCharacters() {
   return {
     type: RESET_CHARACTER,
   };

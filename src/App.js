@@ -22,10 +22,10 @@ import {
 function App() {
   const navigate = useNavigate();
   const [access, setAccess] = useState(false);
-  const EMAIL = "eje@gmail.com";
-  const PASSWORD = "@Model101";
+  // const EMAIL = "eje@gmail.com";
+  // const PASSWORD = "@Model101";
 
-  // const [characters, setCharacters] = useState([]); 
+  // const [characters, setCharacters] = useState([]);
   const { characters } = useSelector((state) => state); // |*|*|*| AAA |*|*|*|
   const location = useLocation();
   //console.log("location", location);
@@ -34,18 +34,34 @@ function App() {
 
   useEffect(() => {
     dispatch(addLocation(location.pathname));
-  }, [dispatch,location]);
+  }, [dispatch, location]);
 
   function login(inputs) {
-    if (inputs.password === PASSWORD && inputs.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
-      return alert("OK");
-    }
+    axios
+      .get(
+        `http://localhost:3001/rickandmorty/login?password=${inputs.password}&email=${inputs.email}`
+      )
+      .then(({ data }) => {
+        // console.log(":::::::::", data.access);
+        if (data.access) {
+          setAccess(data.access);
+          navigate("/home");
+          return alert("Welcome to our App");
+        } else {
+          return alert("invalid user");
+        }
+      });
   }
   function logout() {
-    setAccess(false);
-    navigate("/");
+    axios
+      .get(`http://localhost:3001/rickandmorty/login?password=1234&email=1234`)
+      .then(({ data }) => {
+        // console.log(":::::::::", data.access);
+        if (!data.access) {
+          setAccess(data.access);
+          navigate("/");
+        }
+      });
   }
 
   useEffect(() => {
@@ -54,14 +70,13 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/rickandmorty/characters`)
+      .get(`http://localhost:3001/rickandmorty/character/all`)
       .then((results) => {
         // console.log(":::", results.data);
-
         // setCharacters([...results.data]);
         dispatch(addCharacters(results.data));
       });
-      /* eslint-disable react-hooks/exhaustive-deps */
+    /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
 
   function onSearch(id) {
@@ -76,8 +91,8 @@ function App() {
 
   function onClose(id) {
     // setCharacters((oldChars) => {
-    //   return oldChars.filter((ch) => ch.id !== id); 
-    // }); 
+    //   return oldChars.filter((ch) => ch.id !== id);
+    // });
     // |*|*|*| BBB |*|*|*|
     const filterCharacters = characters.filter((ch) => ch.id !== id);
     dispatch(addCharacters(filterCharacters));
