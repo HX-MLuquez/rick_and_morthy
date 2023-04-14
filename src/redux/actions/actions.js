@@ -14,7 +14,7 @@ import {
   NEXT_PAGE,
 } from "./types";
 
-import axios from 'axios'
+import axios from "axios";
 
 export function addLocation(path) {
   return {
@@ -61,31 +61,44 @@ export function removeCharacter(id) {
   };
 }
 
-export function addFav(character) { // *** to route addFav
-  return function (dispatch) {
-    axios
-      .post(`http://localhost:3001/rickandmorty/favorite`, character)
-      .then(({ data }) => {
-        return dispatch({
-          type: ADD_FAV,
-          payload: data, // data is array myFavorites
-        });
-      })
-      .catch((error) => error);
+export function addFav(character) {
+  return async function (dispatch) {
+    try {
+      const {data} = await axios.post(
+        `http://localhost:3001/rickandmorty/favorite`,
+        character
+      );
+      return dispatch({
+        type: ADD_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      console.log("addFav not found", error);
+    }
   };
+  // return {
+  //   type: ADD_FAV,
+  //   payload: character,
+  // };
 }
 
-export function removeFav(id) { // *** to route deleteFav
-  return function (dispatch) {
-    axios
-      .delete(`http://localhost:3001/rickandmorty/favorite/${id}`)
-      .then(({ data }) => {
-        return dispatch({
-          type: REMOVE_FAV,
-          payload: data, // data is array myFavorites
-        });
-      })
-      .catch((error) => error);
+export function removeFav(id) {
+  return async function (dispatch) {
+    try {
+      const {data} = await axios.delete(
+        `http://localhost:3001/rickandmorty/favorite/${id}`
+      );
+      return dispatch({
+        type: REMOVE_FAV,
+        payload: data, // myFavorites
+      });
+    } catch (error) {
+      console.log("removeFav not found", error);
+    }
+    // return {
+    //   type: REMOVE_FAV,
+    //   payload: id,
+    // };
   };
 }
 

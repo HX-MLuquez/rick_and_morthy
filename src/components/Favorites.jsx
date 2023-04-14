@@ -64,7 +64,7 @@ export default function Favorites({ onClose }) {
                 status={element.status}
                 species={element.species}
                 gender={element.gender}
-                origin={element.origin.name}
+                origin={element.origin}
                 image={element.image}
                 onClose={() => closeFavorite(element.id)}
               ></Card>

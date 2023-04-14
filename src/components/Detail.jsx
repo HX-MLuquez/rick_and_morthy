@@ -8,16 +8,22 @@ export default function Detail() {
   const [character, setCharacter] = useState({});
 
   useEffect(() => {
-    axios(`http://localhost:3001/rickandmorty/character/detail/${id}`).then(
-      ({ data }) => {
+    async function inEffect() {
+      try {
+        const { data } = await axios(
+          `http://localhost:3001/rickandmorty/character/detail/${id}`
+        );
         if (data.name) {
           setCharacter(data);
         } else {
           window.alert("No hay personajes con ese ID");
         }
+      } catch (error) {
+        console.log("character update in useeffect in component Detail", error);
       }
-    );
-    return setCharacter({});
+    }
+    inEffect();
+    return setCharacter({}); // cuando se desmonta -> {}
   }, [id]);
 
   return (

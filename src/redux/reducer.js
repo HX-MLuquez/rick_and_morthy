@@ -83,7 +83,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case ADD_FAV:
       return {
         ...state,
-        myFavorites: payload, // simplificamos a pasar solo payload
+        myFavorites: payload,
         myFavoritesOrigin: payload,
       };
     case REMOVE_FAV:
@@ -92,8 +92,8 @@ export default function rootReducer(state = initialState, { type, payload }) {
       // );
       return {
         ...state,
-        myFavorites: payload, // simplificamos a pasar solo payload
-        myFavoritesOrigin: payload, // simplificamos a pasar solo payload
+        myFavorites: payload,
+        myFavoritesOrigin: payload,
       };
     case FILTER:
       const newFilter = state.myFavoritesOrigin.filter(
