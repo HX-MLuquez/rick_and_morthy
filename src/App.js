@@ -51,7 +51,7 @@ function App() {
           return alert("invalid user");
         }
       });
-  }
+  } //  --> request al back post user -> res userId save en estado -> props
   function logout() {
     axios
       .get(`http://localhost:3001/rickandmorty/login?password=1234&email=1234`)
@@ -105,7 +105,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Login login={login} />}></Route>
-        <Route path="/home" element={<Cards onClose={onClose} />}></Route>
+        <Route path="/home" element={<Cards onClose={onClose} userId={1} />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route
           path="/favorites"

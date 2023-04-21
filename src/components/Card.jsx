@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Card(props) {
-  const { id, name, status, species, gender, origin, image, onClose } = props;
+  const { id, name, origin, image, onClose } = props;
   const dispatch = useDispatch();
   // dispatch(addFav({}))
   const [isFav, setIsFav] = useState(false);

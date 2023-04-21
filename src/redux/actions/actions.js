@@ -64,10 +64,11 @@ export function removeCharacter(id) {
 export function addFav(character) {
   return async function (dispatch) {
     try {
-      const {data} = await axios.post(
+      const { data } = await axios.post(
         `http://localhost:3001/rickandmorty/favorite`,
         character
       );
+      console.log(":::::::::data", data);
       return dispatch({
         type: ADD_FAV,
         payload: data,
@@ -85,7 +86,7 @@ export function addFav(character) {
 export function removeFav(id) {
   return async function (dispatch) {
     try {
-      const {data} = await axios.delete(
+      const { data } = await axios.delete(
         `http://localhost:3001/rickandmorty/favorite/${id}`
       );
       return dispatch({
